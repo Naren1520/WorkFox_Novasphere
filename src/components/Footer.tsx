@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Footer() {
+  const location = useLocation();
+
+  // Don't show footer on login page
+  if (location.pathname === '/login') {
+    return null;
+  }
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -8,11 +15,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
+              <img 
+                src="/images/logo.png" 
+                alt="WorkFox Logo" 
+                className="h-10 w-10 rounded-full object-contain shadow-lg"
+              />
               <span className="text-2xl font-bold">WorkFox</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
@@ -43,12 +50,12 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link to="/tasks" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Browse Tasks
+                  Freelancers
                 </Link>
               </li>
               <li>
                 <Link to="/create" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Create Task
+                  Clients
                 </Link>
               </li>
               <li>
@@ -122,7 +129,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 WorkFox. All rights reserved. Built on Algorand.
+            © 2026 WorkFox. All rights reserved. Built on Algorand.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">

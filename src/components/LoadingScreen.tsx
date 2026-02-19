@@ -40,10 +40,12 @@ const LoadingScreen = () => {
         {/* Logo animation */}
         <div className="relative mb-8">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-2xl opacity-50 animate-pulse" />
-          <div className="relative w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center transform rotate-12 animate-bounce-slow shadow-2xl">
-            <svg className="w-14 h-14 text-white animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+          <div className="relative w-32 h-32 bg-white rounded-full flex items-center justify-center animate-bounce-slow shadow-2xl p-4">
+            <img 
+              src="/images/logo.png" 
+              alt="WorkFox Logo" 
+              className="w-full h-full rounded-full object-contain"
+            />
           </div>
         </div>
 

@@ -44,13 +44,13 @@ export default function LandingPage() {
                 to="/tasks"
                 className="px-8 py-4 bg-white text-indigo-600 rounded-xl font-semibold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all shadow-xl"
               >
-                Browse Tasks
+                I'm a Freelancer
               </Link>
               <Link
                 to="/create"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold text-lg hover:bg-white/10 transform hover:scale-105 transition-all"
               >
-                Post a Task
+                I'm a Client
               </Link>
             </div>
           </div>
