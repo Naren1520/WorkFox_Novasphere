@@ -10,7 +10,7 @@
 
 ---
 
-## � System Architecture
+## 🏛️ System Architecture
 
 ```mermaid
 graph TB
@@ -148,7 +148,7 @@ stateDiagram-v2
 | State | Code | Description |
 |-------|------|-------------|
 | 🟢 OPEN | 0 | Available for claiming |
-| � CLAIMED | 1 | Assigned to freelancer |
+| 🔵 CLAIMED | 1 | Assigned to freelancer |
 | 🟡 SUBMITTED | 2 | Work submitted |
 | 🟣 APPROVED | 3 | Payment released |
 | 🔴 REJECTED | 4 | Work rejected |
@@ -248,7 +248,7 @@ sequenceDiagram
 
 ---
 
-## � Features Map
+## 🗺️ Features Map
 
 ```mermaid
 mindmap
@@ -347,7 +347,7 @@ graph LR
 ### Build Config
 ```toml
 [build]
-  command = "npm install && npm run build"
+  command = "rm -rf node_modules package-lock.json && npm install && npm run build"
   publish = "dist"
 
 [build.environment]
@@ -367,7 +367,7 @@ graph LR
 
 ---
 
-## � Security
+## 🔒 Security
 
 ```mermaid
 graph TD
