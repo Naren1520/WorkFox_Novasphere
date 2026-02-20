@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Overview](#overview)
 - [Key Features](#key-features)
@@ -22,12 +22,11 @@
 - [Smart Contract Integration](#smart-contract-integration)
 - [Authentication Flow](#authentication-flow)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 WorkFox is a next-generation freelance platform that leverages blockchain technology to eliminate intermediaries, reduce fees, and ensure transparent, secure transactions. Built on the Algorand blockchain, it provides instant finality, low transaction costs, and carbon-negative operations.
 
@@ -51,7 +50,7 @@ WorkFox addresses these issues through:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 ### For Clients
 - **Task Creation** - Post tasks with ALGO bounties
@@ -74,7 +73,7 @@ WorkFox addresses these issues through:
 
 ---
 
-## 🛠 Technology Stack
+##  Technology Stack
 
 ### Frontend
 - **React 19** - UI framework
@@ -101,7 +100,7 @@ WorkFox addresses these issues through:
 
 ---
 
-## 🏗 Architecture
+##  Architecture
 
 ### System Architecture
 
@@ -148,7 +147,7 @@ User Action → Authentication → Wallet Connection → Smart Contract
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -195,7 +194,7 @@ User Action → Authentication → Wallet Connection → Smart Contract
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Google OAuth Setup
 
@@ -241,7 +240,7 @@ The smart contract is pre-deployed on Algorand TestNet:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 WorkFoxx_Novasphere/
@@ -287,7 +286,7 @@ WorkFoxx_Novasphere/
 
 ---
 
-## 🔗 Smart Contract Integration
+##  Smart Contract Integration
 
 ### Contract Architecture
 
@@ -336,34 +335,9 @@ REFUNDED = 5   # Funds returned to client
 - **Action**: Returns funds if deadline passed and unclaimed
 - **Validation**: Task must be OPEN, deadline passed
 
-### Integration Example
-
-```typescript
-import { BountyBoard } from './frontend-integration';
-import contractInfo from './contract.json';
-
-// Initialize
-const bountyBoard = new BountyBoard(contractInfo);
-
-// Create task
-const txns = await bountyBoard.createTask(
-  senderAddress,
-  "Build Landing Page",
-  "Responsive design with React",
-  10,  // 10 ALGO
-  7    // 7 days
-);
-
-// Sign with Pera Wallet
-const signedTxns = await peraWallet.signTransaction([txns]);
-
-// Submit to blockchain
-await algodClient.sendRawTransaction(signedTxns).do();
-```
-
 ---
 
-## 🔐 Authentication Flow
+##  Authentication Flow
 
 ### User Journey
 
@@ -471,19 +445,6 @@ test: Add tests
 chore: Maintenance tasks
 ```
 
-### Code Quality
-
-```bash
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
-
-# Format code
-npm run format
-```
-
 ---
 
 ## 🧪 Testing
@@ -504,26 +465,7 @@ npm run format
 
 - **TestNet ALGO**: Use [Algorand Dispenser](https://bank.testnet.algorand.network/)
 - **Test Wallet**: Create via Pera Wallet app
-
----
-
-## 📊 Performance Metrics
-
-### Target Metrics
-
-- **First Contentful Paint**: < 1.5s
-- **Time to Interactive**: < 3.5s
-- **Lighthouse Score**: > 90
-- **Bundle Size**: < 500KB (gzipped)
-
-### Optimization Techniques
-
-- Code splitting with React.lazy()
-- Image optimization
-- Tree shaking
-- Minification
-- CDN delivery (Netlify)
-
+  
 ---
 
 ## 🔒 Security Considerations
@@ -552,53 +494,9 @@ npm run format
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit changes**
-   ```bash
-   git commit -m 'feat: Add amazing feature'
-   ```
-4. **Push to branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open Pull Request**
-
-### Contribution Guidelines
-
-- Follow existing code style
-- Add tests for new features
-- Update documentation
-- Keep commits atomic
-- Write clear commit messages
-
----
-
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Team
-
-- **Project Lead**: Naren S J
-- **Repository**: [WorkFoxx_Novasphere](https://github.com/Naren1520/WorkFoxx_Novasphere)
-
----
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/Naren1520/WorkFoxx_Novasphere/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Naren1520/WorkFoxx_Novasphere/discussions)
-- **Email**: support@workfox.app
 
 ---
 
