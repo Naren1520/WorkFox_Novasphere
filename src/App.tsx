@@ -24,8 +24,6 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 function AppContent() {
   const [loading, setLoading] = useState(true);
-  const { isAuthenticated } = useAuth();
-  const location = window.location;
 
   useEffect(() => {
     // Check if we should show loading screen
