@@ -29,42 +29,46 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%)' }}>
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-white rounded-full opacity-20 animate-float"
+            className="absolute rounded-full opacity-30 animate-float"
             style={{
+              width: Math.random() * 4 + 2 + 'px',
+              height: Math.random() * 4 + 2 + 'px',
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              background: ['#d4af37', '#bb86fc', '#00d4ff'][Math.floor(Math.random() * 3)],
               animationDelay: `${Math.random() * 5}s`,
               animationDuration: `${5 + Math.random() * 10}s`,
+              filter: 'blur(1px)',
             }}
           />
         ))}
       </div>
 
       {/* Login Card */}
-      <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-12 max-w-md w-full mx-4 animate-fade-in-up">
+      <div className="relative z-10 rounded-3xl p-12 max-w-md w-full mx-4 animate-fade-in-up shadow-2xl" style={{ background: 'linear-gradient(135deg, rgba(22, 33, 62, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%)', backdropFilter: 'blur(10px)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-xl opacity-50 animate-pulse" />
-            <img 
-              src="/images/logo.png" 
-              alt="WorkFox Logo" 
-              className="relative w-24 h-24 rounded-full object-contain bg-gradient-to-br from-indigo-50 to-purple-50 p-4 shadow-lg"
+            <div className="absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse" style={{ background: 'linear-gradient(135deg, #d4af37 0%, #bb86fc 100%)' }} />
+            <img
+              src="/images/logo.png"
+              alt="WorkFox Logo"
+              className="relative w-24 h-24 rounded-full object-contain p-4 shadow-xl" style={{ background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%)', border: '2px solid rgba(212, 175, 55, 0.3)' }}
             />
           </div>
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl font-bold text-center mb-3 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold text-center mb-3 bg-gradient-to-r from-[#d4af37] via-[#bb86fc] to-[#00d4ff] bg-clip-text text-transparent">
           Welcome to WorkFox
         </h1>
-        <p className="text-gray-600 text-center mb-8">
+        <p className="text-center mb-8" style={{ color: '#b0b0b8' }}>
           Sign in to access the decentralized freelance platform
         </p>
 
@@ -75,34 +79,39 @@ export default function Login() {
             { icon: '⚡', text: 'Instant transactions' },
             { icon: '🌍', text: 'Global marketplace' },
           ].map((feature, i) => (
-            <div key={i} className="flex items-center space-x-3 text-gray-700">
+            <div key={i} className="flex items-center space-x-3 p-3 rounded-lg" style={{ background: 'rgba(212, 175, 55, 0.05)', border: '1px solid rgba(212, 175, 55, 0.1)' }}>
               <span className="text-2xl">{feature.icon}</span>
-              <span className="text-sm">{feature.text}</span>
+              <span className="text-sm" style={{ color: '#b0b0b8' }}>{feature.text}</span>
             </div>
           ))}
         </div>
 
         {/* Google Login Button */}
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-6">
           <GoogleLogin
             onSuccess={handleSuccess}
             onError={handleError}
             useOneTap
-            theme="filled_blue"
+            theme="filled_black"
             size="large"
             text="signin_with"
             shape="rectangular"
           />
         </div>
 
+        {/* Divider */}
+        <div className="relative my-6">
+          <div style={{ borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}></div>
+        </div>
+
         {/* Terms */}
-        <p className="text-xs text-gray-500 text-center mt-6">
+        <p className="text-xs text-center" style={{ color: '#b0b0b8' }}>
           By signing in, you agree to our{' '}
-          <a href="#" className="text-indigo-600 hover:underline">
+          <a href="#" className="hover:underline transition-colors" style={{ color: '#d4af37' }}>
             Terms of Service
           </a>{' '}
           and{' '}
-          <a href="#" className="text-indigo-600 hover:underline">
+          <a href="#" className="hover:underline transition-colors" style={{ color: '#d4af37' }}>
             Privacy Policy
           </a>
         </p>
