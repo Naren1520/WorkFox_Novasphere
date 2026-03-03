@@ -64,10 +64,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(user);
       setIsAuthenticated(true);
       localStorage.setItem('workfox_user', JSON.stringify(user));
-      
-      // Call callback after state is updated
+
+      // Call callback after state is updated (increased delay to ensure state propagation)
       if (callback) {
-        setTimeout(callback, 100);
+        setTimeout(callback, 300);
       }
     } catch (error) {
       console.error('Error decoding token:', error);
