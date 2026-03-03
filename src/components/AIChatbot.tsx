@@ -45,14 +45,14 @@ export default function AIChatbot() {
 
     try {
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      
-      if (!apiKey || apiKey === 'AIzaSyA0-uzmonFXxeaSltuD80Ugy_AqR4yfx8k') {
+
+      if (!apiKey) {
         throw new Error('Please set your Gemini API key in the .env file');
       }
 
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: 'gemini-2-flash' });
-`   `
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
       const context = `You are a helpful AI assistant for WorkFox, a decentralized freelance platform built on Algorand blockchain. 
       Help users with questions about:
       - How to use the platform (creating tasks, claiming tasks, submitting work)
