@@ -10,7 +10,9 @@ export default function Header() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const aboutDropdownRef = useRef<HTMLDivElement>(null);
 
   // Don't show header on login page
   if (location.pathname === '/login') {
@@ -30,6 +32,9 @@ export default function Header() {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setProfileDropdownOpen(false);
+      }
+      if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target as Node)) {
+        setAboutDropdownOpen(false);
       }
     }
 
@@ -121,26 +126,45 @@ export default function Header() {
             >
               Dashboard
             </Link>
-            <Link
-              to="/developers"
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/developers')
-                  ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
-                  : 'text-[#b0b0b8] hover:text-[#d4af37]'
-              }`}
-            >
-              Developers
-            </Link>
-            <Link
-              to="/about"
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/about')
-                  ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
-                  : 'text-[#b0b0b8] hover:text-[#d4af37]'
-              }`}
-            >
-              About
-            </Link>
+            <div ref={aboutDropdownRef} className="relative">
+              <button
+                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-1 ${
+                  isActive('/about') || isActive('/developers')
+                    ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
+                    : 'text-[#b0b0b8] hover:text-[#d4af37]'
+                }`}
+              >
+                <span>About</span>
+                <svg
+                  className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {aboutDropdownOpen && (
+                <div className="absolute left-0 mt-2 w-40 rounded-xl shadow-lg py-2 z-50" style={{ background: 'linear-gradient(135deg, rgba(22, 33, 62, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                  <Link
+                    to="/about"
+                    onClick={() => setAboutDropdownOpen(false)}
+                    className="flex items-center px-4 py-2 text-sm text-[#b0b0b8] hover:text-[#d4af37] transition-colors"
+                  >
+                    About Us
+                  </Link>
+                  <Link
+                    to="/developers"
+                    onClick={() => setAboutDropdownOpen(false)}
+                    className="flex items-center px-4 py-2 text-sm text-[#b0b0b8] hover:text-[#d4af37] transition-colors"
+                  >
+                    Developers
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Wallet Connection & Mobile Menu */}
@@ -297,22 +321,22 @@ export default function Header() {
               Dashboard
             </Link>
             <Link
-              to="/developers"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/developers') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
-              }`}
-            >
-              Developers
-            </Link>
-            <Link
               to="/about"
               onClick={() => setMobileMenuOpen(false)}
               className={`block px-4 py-2 rounded-lg font-medium transition-all ${
                 isActive('/about') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
               }`}
             >
-              About
+              About Us
+            </Link>
+            <Link
+              to="/developers"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block px-4 py-2 pl-8 rounded-lg font-medium transition-all text-sm ${
+                isActive('/developers') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
+              }`}
+            >
+              → Developers
             </Link>
             <Link
               to="/profile"
