@@ -101,36 +101,38 @@ export default function AIChatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center z-50 group"
+          className="fixed bottom-6 right-6 w-16 h-16 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center z-50 group"
+          style={{ background: 'linear-gradient(135deg, #d4af37 0%, #bb86fc 100%)', boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.1)' }}
         >
-          <img 
-            src="/images/logo.png" 
-            alt="AI Assistant" 
+          <img
+            src="/images/logo.png"
+            alt="AI Assistant"
             className="w-10 h-10 rounded-full object-contain"
           />
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#00d4ff] rounded-full border-2 border-white animate-pulse"></div>
         </button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col z-50 animate-slide-up">
+        <div className="fixed bottom-6 right-6 w-96 h-[600px] rounded-2xl shadow-2xl flex flex-col z-50 animate-slide-up" style={{ background: 'linear-gradient(135deg, rgba(22, 33, 62, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%)', backdropFilter: 'blur(10px)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+          <div className="text-white p-4 rounded-t-2xl flex items-center justify-between" style={{ background: 'linear-gradient(135deg, #2d1b69 0%, #1a0033 100%)', borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
             <div className="flex items-center space-x-3">
-              <img 
-                src="/images/logo.png" 
-                alt="AI Assistant" 
-                className="w-10 h-10 rounded-full object-contain bg-white p-1"
+              <img
+                src="/images/logo.png"
+                alt="AI Assistant"
+                className="w-10 h-10 rounded-full object-contain bg-[#d4af37] p-1"
               />
               <div>
-                <h3 className="font-semibold">WorkFox AI</h3>
-                <p className="text-xs text-white/80">Powered by Gemini</p>
+                <h3 className="font-semibold" style={{ color: '#d4af37' }}>WorkFox AI</h3>
+                <p className="text-xs" style={{ color: '#b0b0b8' }}>Powered by Gemini</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-lg p-2 transition-colors"
+              className="hover:bg-white/10 rounded-lg p-2 transition-colors"
+              style={{ color: '#d4af37' }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -141,7 +143,8 @@ export default function AIChatbot() {
           {/* Messages */}
           <div
             ref={chatContainerRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+            className="flex-1 overflow-y-auto p-4 space-y-4"
+            style={{ background: 'linear-gradient(135deg, rgba(15, 15, 30, 0.5) 0%, rgba(26, 26, 46, 0.5) 100%)' }}
           >
             {messages.map((message, index) => (
               <div
@@ -149,17 +152,21 @@ export default function AIChatbot() {
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                  className="max-w-[80%] rounded-2xl px-4 py-2"
+                  style={
                     message.role === 'user'
-                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
-                      : 'bg-white text-gray-800 shadow-md'
-                  }`}
+                      ? { background: 'linear-gradient(135deg, #d4af37 0%, #bb86fc 100%)', color: '#0f0f1e' }
+                      : { background: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.2)', color: '#b0b0b8' }
+                  }
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                   <p
-                    className={`text-xs mt-1 ${
-                      message.role === 'user' ? 'text-white/70' : 'text-gray-400'
-                    }`}
+                    className="text-xs mt-1"
+                    style={
+                      message.role === 'user'
+                        ? { color: 'rgba(15, 15, 30, 0.7)' }
+                        : { color: 'rgba(176, 176, 184, 0.6)' }
+                    }
                   >
                     {message.timestamp.toLocaleTimeString([], {
                       hour: '2-digit',
@@ -171,11 +178,11 @@ export default function AIChatbot() {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white rounded-2xl px-4 py-3 shadow-md">
+                <div style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.2)' }} className="rounded-2xl px-4 py-3">
                   <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#d4af37' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#d4af37', animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#d4af37', animationDelay: '0.4s' }}></div>
                   </div>
                 </div>
               </div>
@@ -184,7 +191,7 @@ export default function AIChatbot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-gray-200 bg-white rounded-b-2xl">
+          <div className="p-4 rounded-b-2xl" style={{ background: 'linear-gradient(135deg, rgba(22, 33, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%)', borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
             <div className="flex space-x-2">
               <input
                 type="text"
@@ -192,13 +199,17 @@ export default function AIChatbot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 rounded-xl focus:outline-none transition-all disabled:opacity-50"
+                style={{ background: 'rgba(15, 15, 30, 0.6)', color: '#b0b0b8', border: '1px solid rgba(212, 175, 55, 0.2)' }}
+                onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.3)'}
+                onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
                 disabled={isLoading}
               />
               <button
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="text-white px-4 py-2 rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ background: 'linear-gradient(135deg, #d4af37 0%, #bb86fc 100%)', color: '#0f0f1e' }}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

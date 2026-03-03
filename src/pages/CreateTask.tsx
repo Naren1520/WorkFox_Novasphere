@@ -116,22 +116,22 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen py-12" style={{ background: 'linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%)' }}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900">Clients</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-5xl font-bold text-[#d4af37] mb-2">Clients</h1>
+          <p className="text-[#b0b0b8] text-lg">
             Post a task and let freelancers compete to complete it
           </p>
         </div>
 
         {!activeAddress ? (
           <div className="card text-center py-12">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="mx-auto h-12 w-12" style={{ color: '#d4af37' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Wallet Required</h3>
-            <p className="mt-2 text-gray-600">
+            <h3 className="mt-4 text-lg font-medium text-[#d4af37]">Wallet Required</h3>
+            <p className="mt-2 text-[#b0b0b8]">
               Please connect your wallet to create a task
             </p>
           </div>
@@ -190,32 +190,29 @@ export default function CreateTask() {
                         <button
                           type="button"
                           onClick={() => {
-                            // Calculate MBR for current title/description
                             const fixedBoxesMBR = (2500 + 400 * 32) + (2500 + 400 * 32) + (2500 + 400 * 8) + (2500 + 400 * 8) + (2500 + 400 * 8) + (2500 + 400 * 1);
                             const variableBoxesMBR = (2500 + 400 * formData.title.length) + (2500 + 400 * formData.description.length);
                             const totalMBR = (fixedBoxesMBR + variableBoxesMBR) / 1_000_000;
-                            
-                            // Reserve: MBR + min balance (0.1) + fees (0.05)
                             const reserved = totalMBR + 0.15;
                             const maxAmount = Math.max(0, walletBalance - reserved);
                             setFormData({ ...formData, amount: maxAmount.toFixed(2) });
                           }}
-                          className="absolute right-2 top-2 text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+                          className="absolute right-2 top-2 text-xs font-medium" style={{ color: '#d4af37' }}
                         >
                           MAX
                         </button>
                       )}
                     </div>
                     <div className="mt-1 flex justify-between text-sm">
-                      <span className="text-gray-500">Minimum: 0.1 ALGO</span>
+                      <span style={{ color: '#b0b0b8' }}>Minimum: 0.1 ALGO</span>
                       {walletBalance !== null && (
-                        <span className="text-gray-700 font-medium">
+                        <span style={{ color: '#d4af37', fontWeight: '600' }}>
                           Balance: {walletBalance.toFixed(3)} ALGO
                         </span>
                       )}
                     </div>
                     {walletBalance !== null && walletBalance < 0.2 && (
-                      <p className="mt-1 text-xs text-red-600">
+                      <p className="mt-1 text-xs" style={{ color: '#ff6b6b' }}>
                         ⚠️ Low balance! Get TestNet ALGO from: bank.testnet.algorand.network
                       </p>
                     )}
@@ -241,16 +238,16 @@ export default function CreateTask() {
                 </div>
 
                 {/* Summary */}
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-medium text-gray-900 mb-3">Cost Breakdown</h3>
+                <div className="rounded-lg p-4" style={{ background: 'rgba(212, 175, 55, 0.05)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                  <h3 className="font-medium text-[#d4af37] mb-3">Cost Breakdown</h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Task Reward:</span>
-                      <span className="font-medium">{formData.amount || '0'} ALGO</span>
+                      <span style={{ color: '#b0b0b8' }}>Task Reward:</span>
+                      <span style={{ color: '#d4af37', fontWeight: '600' }}>{formData.amount || '0'} ALGO</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Blockchain Storage (MBR):</span>
-                      <span className="font-medium">
+                      <span style={{ color: '#b0b0b8' }}>Blockchain Storage (MBR):</span>
+                      <span style={{ color: '#d4af37', fontWeight: '600' }}>
                         {(() => {
                           const fixedBoxesMBR = (2500 + 400 * 32) + (2500 + 400 * 32) + (2500 + 400 * 8) + (2500 + 400 * 8) + (2500 + 400 * 8) + (2500 + 400 * 1);
                           const variableBoxesMBR = (2500 + 400 * formData.title.length) + (2500 + 400 * formData.description.length);
@@ -260,12 +257,12 @@ export default function CreateTask() {
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Transaction Fee:</span>
-                      <span className="font-medium">~0.002 ALGO</span>
+                      <span style={{ color: '#b0b0b8' }}>Transaction Fee:</span>
+                      <span style={{ color: '#d4af37', fontWeight: '600' }}>~0.002 ALGO</span>
                     </div>
-                    <div className="border-t pt-2 mt-2 flex justify-between">
-                      <span className="text-gray-900 font-medium">Total Cost:</span>
-                      <span className="font-bold text-indigo-600">
+                    <div className="border-t pt-2 mt-2 flex justify-between" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}>
+                      <span style={{ color: '#d4af37', fontWeight: '700' }}>Total Cost:</span>
+                      <span style={{ color: '#d4af37', fontWeight: '700', fontSize: '1.125rem' }}>
                         {(() => {
                           const fixedBoxesMBR = (2500 + 400 * 32) + (2500 + 400 * 32) + (2500 + 400 * 8) + (2500 + 400 * 8) + (2500 + 400 * 8) + (2500 + 400 * 1);
                           const variableBoxesMBR = (2500 + 400 * formData.title.length) + (2500 + 400 * formData.description.length);
@@ -275,7 +272,7 @@ export default function CreateTask() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-3 text-xs text-gray-500">
+                  <p className="mt-3 text-xs" style={{ color: '#b0b0b8' }}>
                     💡 MBR (Minimum Balance Requirement) covers on-chain storage costs. It increases with title/description length.
                   </p>
                 </div>
@@ -283,23 +280,23 @@ export default function CreateTask() {
             </div>
 
             {/* Actions */}
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-4">
               <button
                 type="button"
                 onClick={() => navigate('/')}
-                className="btn-secondary"
+                className="btn-secondary flex-1"
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>

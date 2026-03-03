@@ -41,12 +41,12 @@ export default function TaskBoard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex justify-between items-center mb-8">
+    <div className="min-h-screen py-12" style={{ background: 'linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center mb-12">
           <div>
-            <h1 className="text-4xl font-bold text-gray-900">Freelancers</h1>
-            <p className="text-gray-600 mt-2">
+            <h1 className="text-5xl font-bold text-[#d4af37] mb-2">Freelancers</h1>
+            <p className="text-[#b0b0b8] text-lg">
               Discover opportunities and earn ALGO by completing tasks
             </p>
           </div>
@@ -63,21 +63,26 @@ export default function TaskBoard() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-3 mb-12">
           {filterButtons.map((btn) => (
             <button
               key={btn.value}
               onClick={() => setFilter(btn.value)}
-              className={`px-4 py-2 rounded-lg font-medium transition ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
                 filter === btn.value
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  ? 'text-[#0f0f1e]'
+                  : 'text-[#b0b0b8] hover:text-[#d4af37]'
               }`}
+              style={{
+                background: filter === btn.value ? 'linear-gradient(135deg, #d4af37 0%, #f4c95d 100%)' : 'transparent',
+                border: filter === btn.value ? 'none' : '1px solid rgba(212, 175, 55, 0.3)',
+                boxShadow: filter === btn.value ? '0 4px 15px rgba(212, 175, 55, 0.3)' : 'none',
+              }}
             >
               {btn.label}
               <span className="ml-2 text-sm opacity-75">
-                ({btn.value === 'all' 
-                  ? tasks.length 
+                ({btn.value === 'all'
+                  ? tasks.length
                   : tasks.filter(t => t.status === btn.value).length
                 })
               </span>
@@ -88,17 +93,17 @@ export default function TaskBoard() {
         {/* Tasks Grid */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#d4af37' }}></div>
           </div>
         ) : filteredTasks.length === 0 ? (
           <div className="text-center py-20">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="mx-auto h-12 w-12 text-[#b0b0b8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">No tasks found</h3>
-            <p className="mt-2 text-gray-600">
-              {filter === 'all' 
-                ? 'Be the first to create a task!' 
+            <h3 className="mt-4 text-lg font-medium text-[#d4af37]">No tasks found</h3>
+            <p className="mt-2 text-[#b0b0b8]">
+              {filter === 'all'
+                ? 'Be the first to create a task!'
                 : `No ${BountyBoard.getStatusLabel(filter as TaskStatusType).toLowerCase()} tasks available.`
               }
             </p>
@@ -112,28 +117,28 @@ export default function TaskBoard() {
         )}
 
         {/* Stats */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="card text-center">
-            <div className="text-3xl font-bold text-indigo-600">{tasks.length}</div>
-            <div className="text-gray-600 mt-1">Total Tasks</div>
+            <div className="text-3xl font-bold text-[#d4af37]">{tasks.length}</div>
+            <div className="text-[#b0b0b8] mt-2">Total Tasks</div>
           </div>
           <div className="card text-center">
-            <div className="text-3xl font-bold text-green-600">
+            <div className="text-3xl font-bold text-[#00d4ff]">
               {tasks.filter(t => t.status === TaskStatus.OPEN).length}
             </div>
-            <div className="text-gray-600 mt-1">Open Tasks</div>
+            <div className="text-[#b0b0b8] mt-2">Open Tasks</div>
           </div>
           <div className="card text-center">
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-3xl font-bold text-[#bb86fc]">
               {tasks.filter(t => t.status === TaskStatus.CLAIMED || t.status === TaskStatus.SUBMITTED).length}
             </div>
-            <div className="text-gray-600 mt-1">In Progress</div>
+            <div className="text-[#b0b0b8] mt-2">In Progress</div>
           </div>
           <div className="card text-center">
-            <div className="text-3xl font-bold text-purple-600">
+            <div className="text-3xl font-bold text-[#d4af37]">
               {tasks.filter(t => t.status === TaskStatus.APPROVED).length}
             </div>
-            <div className="text-gray-600 mt-1">Completed</div>
+            <div className="text-[#b0b0b8] mt-2">Completed</div>
           </div>
         </div>
       </div>
