@@ -11,6 +11,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [userMode, setUserMode] = useState<'client' | 'freelancer'>('freelancer');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const aboutDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -41,6 +42,21 @@ export default function Header() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Load user mode from localStorage
+  useEffect(() => {
+    const savedMode = localStorage.getItem('workfox_user_mode') as 'client' | 'freelancer';
+    if (savedMode) {
+      setUserMode(savedMode);
+    }
+  }, []);
+
+  const toggleUserMode = () => {
+    const newMode = userMode === 'client' ? 'freelancer' : 'client';
+    setUserMode(newMode);
+    localStorage.setItem('workfox_user_mode', newMode);
+    toast.success(`Switched to ${newMode} mode`);
+  };
 
   const handleConnect = async () => {
     try {
@@ -84,6 +100,28 @@ export default function Header() {
             </span>
           </Link>
 
+          {/* User Mode Toggle */}
+          <div className="hidden lg:flex items-center">
+            <div className="flex items-center space-x-3 px-4 py-2 rounded-lg" style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+              <span className="text-sm font-medium text-[#d4af37]">
+                {userMode === 'client' ? 'Client' : 'Freelancer'}
+              </span>
+              <button
+                onClick={toggleUserMode}
+                className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2"
+                style={{ background: userMode === 'client' ? 'rgba(212, 175, 55, 0.3)' : 'rgba(187, 134, 252, 0.3)' }}
+                aria-label={`Switch to ${userMode === 'client' ? 'freelancer' : 'client'} mode`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full transition-transform ${
+                    userMode === 'client' ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                  style={{ background: userMode === 'client' ? '#d4af37' : '#bb86fc' }}
+                />
+              </button>
+            </div>
+          </div>
+
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
             <Link
@@ -96,26 +134,29 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
-              to="/tasks"
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/tasks')
-                  ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
-                  : 'text-[#b0b0b8] hover:text-[#d4af37]'
-              }`}
-            >
-              Freelancers
-            </Link>
-            <Link
-              to="/create"
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/create')
-                  ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
-                  : 'text-[#b0b0b8] hover:text-[#d4af37]'
-              }`}
-            >
-              Clients
-            </Link>
+            {userMode === 'freelancer' ? (
+              <Link
+                to="/tasks"
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  isActive('/tasks')
+                    ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
+                    : 'text-[#b0b0b8] hover:text-[#d4af37]'
+                }`}
+              >
+                Find Tasks
+              </Link>
+            ) : (
+              <Link
+                to="/create"
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  isActive('/create')
+                    ? 'text-[#d4af37] bg-[rgba(212,175,55,0.1)]'
+                    : 'text-[#b0b0b8] hover:text-[#d4af37]'
+                }`}
+              >
+                Post Task
+              </Link>
+            )}
             <Link
               to="/dashboard"
               className={`px-4 py-2 rounded-lg font-medium transition-all ${
@@ -284,6 +325,25 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden border-t" style={{ borderColor: 'rgba(212, 175, 55, 0.2)', background: 'linear-gradient(135deg, rgba(15, 15, 30, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%)' }}>
           <nav className="px-4 py-4 space-y-2">
+            {/* Mobile User Mode Toggle */}
+            <div className="flex items-center justify-between px-4 py-2 rounded-lg" style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+              <span className="text-sm font-medium text-[#d4af37]">
+                Mode: {userMode === 'client' ? 'Client' : 'Freelancer'}
+              </span>
+              <button
+                onClick={toggleUserMode}
+                className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2"
+                style={{ background: userMode === 'client' ? 'rgba(212, 175, 55, 0.3)' : 'rgba(187, 134, 252, 0.3)' }}
+                aria-label={`Switch to ${userMode === 'client' ? 'freelancer' : 'client'} mode`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full transition-transform ${
+                    userMode === 'client' ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                  style={{ background: userMode === 'client' ? '#d4af37' : '#bb86fc' }}
+                />
+              </button>
+            </div>
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
@@ -293,24 +353,27 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
-              to="/tasks"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/tasks') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
-              }`}
-            >
-              Freelancers
-            </Link>
-            <Link
-              to="/create"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/create') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
-              }`}
-            >
-              Clients
-            </Link>
+            {userMode === 'freelancer' ? (
+              <Link
+                to="/tasks"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-4 py-2 rounded-lg font-medium transition-all ${
+                  isActive('/tasks') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
+                }`}
+              >
+                Find Tasks
+              </Link>
+            ) : (
+              <Link
+                to="/create"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-4 py-2 rounded-lg font-medium transition-all ${
+                  isActive('/create') ? 'text-[#d4af37]' : 'text-[#b0b0b8]'
+                }`}
+              >
+                Post Task
+              </Link>
+            )}
             <Link
               to="/dashboard"
               onClick={() => setMobileMenuOpen(false)}

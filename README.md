@@ -98,28 +98,28 @@ WorkFoxx_Novasphere/
 │
 ├── 📁 src/
 │   ├── 📁 components/
-│   │   ├── AIChatbot.tsx       # 🤖 AI Assistant
-│   │   ├── Header.tsx          # 🧭 Navigation
-│   │   ├── Footer.tsx          # 📄 Footer
-│   │   ├── LoadingScreen.tsx   # ⏳ Loader
-│   │   └── TaskCard.tsx        # 📋 Task Display
+│   │   ├── AIChatbot.tsx       #  AI Assistant
+│   │   ├── Header.tsx          #  Navigation
+│   │   ├── Footer.tsx          #  Footer
+│   │   ├── LoadingScreen.tsx   #  Loader
+│   │   └── TaskCard.tsx        #  Task Display
 │   │
 │   ├── 📁 contexts/
-│   │   └── AuthContext.tsx     # 🔐 Auth State
+│   │   └── AuthContext.tsx     #  Auth State
 │   │
 │   ├── 📁 pages/
-│   │   ├── LandingPage.tsx     # 🏠 Home
-│   │   ├── Login.tsx           # 🔑 Auth
-│   │   ├── TaskBoard.tsx       # 👨‍💻 For Freelancers
-│   │   ├── CreateTask.tsx      # 💼 For Clients
-│   │   ├── Dashboard.tsx       # 📊 User Dashboard
-│   │   ├── Profile.tsx         # 👤 User Profile
-│   │   ├── Developers.tsx      # 🛠️ Dev Docs
-│   │   └── AboutUs.tsx         # ℹ️ About
+│   │   ├── LandingPage.tsx     #  Home
+│   │   ├── Login.tsx           #  Auth
+│   │   ├── TaskBoard.tsx       #  For Freelancers
+│   │   ├── CreateTask.tsx      #  For Clients
+│   │   ├── Dashboard.tsx       #  User Dashboard
+│   │   ├── Profile.tsx         #  User Profile
+│   │   ├── Developers.tsx      #  Dev Docs
+│   │   └── AboutUs.tsx         # ℹ About
 │   │
-│   ├── frontend-integration.ts # ⛓️ Blockchain
-│   ├── WalletProvider.tsx      # 👛 Wallet
-│   └── App.tsx                 # 🎯 Root
+│   ├── frontend-integration.ts #  Blockchain
+│   ├── WalletProvider.tsx      #  Wallet
+│   └── App.tsx                 #  Root
 │
 ├── .env.example
 ├── netlify.toml
@@ -128,7 +128,7 @@ WorkFoxx_Novasphere/
 
 ---
 
-## 🎯 Smart Contract Flow
+##  Smart Contract Flow
 
 ```mermaid
 stateDiagram-v2
@@ -156,7 +156,7 @@ stateDiagram-v2
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1️⃣ Clone & Install
 
@@ -184,7 +184,7 @@ npm run dev
 
 ---
 
-## 🔐 Authentication Flow
+##  Authentication Flow
 
 ```mermaid
 graph LR
@@ -198,7 +198,7 @@ graph LR
 
 ---
 
-## 💳 Payment Flow
+##  Payment Flow
 
 ```mermaid
 sequenceDiagram
@@ -219,7 +219,7 @@ sequenceDiagram
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 <table>
 <tr>
@@ -248,7 +248,7 @@ sequenceDiagram
 
 ---
 
-## 🗺️ Features Map
+##  Features Map
 
 ```mermaid
 mindmap
@@ -302,7 +302,7 @@ Add to: .env → VITE_GEMINI_API_KEY
 
 ---
 
-## 📊 Data Models
+##  Data Models
 
 ### User Profile
 ```typescript
@@ -356,7 +356,7 @@ graph LR
 
 ---
 
-## 📈 Performance
+##  Performance
 
 | Metric | Target | Status |
 |--------|--------|--------|
@@ -384,7 +384,7 @@ graph TD
 
 ---
 
-## 🗺️ Roadmap
+##  Roadmap
 
 ```mermaid
 gantt
@@ -413,7 +413,7 @@ gantt
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 ```mermaid
 graph LR
@@ -431,7 +431,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ---
 
-## 📞 Support
+##  Support
 
 <table>
 <tr>
@@ -474,7 +474,7 @@ MIT License - see [LICENSE](LICENSE)
 ---
 
 <p align="center">
-<b>Built with ❤️ on Algorand</b>
+<b>Built with Algorand</b>
 <br>
 <sub>Decentralizing the Future of Work</sub>
 </p>
